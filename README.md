@@ -1,0 +1,2 @@
+# U10316029_1032JavaProject
+1032JavaProject=猜數字遊戲
