@@ -16,7 +16,7 @@ public class Game extends JFrame{
 	int round = 1;
 	int rand1,rand2,rand3,rand4;
 	private static JLabel firstLabel,seccondLabel,thirdLabel,fourthLabel,resault;
-	private static JButton higher, lower;
+	private static JButton higher, lower,equal;
 	private JMenuBar menubar;
 	private JMenu file;
 	private JMenuItem reset,exit;
@@ -41,11 +41,10 @@ public class Game extends JFrame{
 		systemClose s = new systemClose();
 		exit.addActionListener(s);
 		
-		restartGame r = new  restartGame();
+		restartGame r = new restartGame();
 		reset.addActionListener(r);
 		
 		Container pane = this.getContentPane();
-		//pane.setLayout(null);
 		
 		JPanel top = new JPanel();
 		top.setLayout(new GridLayout(1,4));
@@ -74,6 +73,10 @@ public class Game extends JFrame{
 		higher.setFont(new Font("Serief",Font.ITALIC,24));
 		middle.add(higher);
 		
+		equal = new JButton("Equal");
+		equal.setFont(new Font("Serief",Font.ITALIC,24));
+		middle.add(equal);
+		
 		lower = new JButton("Lower");
 		lower.setFont(new Font("Serief",Font.ITALIC,24));
 		middle.add(lower);
@@ -83,6 +86,7 @@ public class Game extends JFrame{
 		event e = new event();
 		higher.addActionListener(e);
 		lower.addActionListener(e);
+		equal.addActionListener(e);
 		
 		JPanel bottom = new JPanel();
 		bottom.setLayout(new GridLayout(1,1));
@@ -97,7 +101,6 @@ public class Game extends JFrame{
 		public void actionPerformed(ActionEvent e){
 			String option = e.getActionCommand();
 			
-			
 			if(round==1){
 				rand2 = (int)(Math.random()*20+1);
 				seccondLabel.setText(""+rand2);
@@ -105,18 +108,41 @@ public class Game extends JFrame{
 				if(rand2 > rand1 && option.equals("Higher")){
 					resault.setText("Correct,2 More!");
 				}
+				else if(rand2 == rand1 && option.equals("Higher")){
+					resault.setText("Wrong,You Lose.");
+					higher.setEnabled(false);
+					lower.setEnabled(false);
+					equal.setEnabled(false);
+				}
+				else if(rand2 == rand1 && option.equals("Lower")){
+					resault.setText("Wrong,You Lose.");
+					higher.setEnabled(false);
+					lower.setEnabled(false);
+					equal.setEnabled(false);
+				}
 				else if(rand2 > rand1 && option.equals("Lower")){
 					resault.setText("Wrong,You Lose.");
 					higher.setEnabled(false);
 					lower.setEnabled(false);
+					equal.setEnabled(false);
 				}
 				else if(rand2 < rand1 && option.equals("Higher")){
 					resault.setText("Wrong,You Lose.");
 					higher.setEnabled(false);
 					lower.setEnabled(false);
+					equal.setEnabled(false);
 				}
 				else if(rand2 < rand1 && option.equals("Lower")){
 					resault.setText("Correct,2 More!");
+				}
+				else if(rand2 == rand1 && option.equals("Equal")){
+					resault.setText("Correct,2 More!");
+				}
+				else if(rand2 != rand1 && option.equals("Equal")){
+					resault.setText("Wrong,You Lose.");
+					higher.setEnabled(false);
+					lower.setEnabled(false);
+					equal.setEnabled(false);
 				}
 				round = 2;
 			}
@@ -127,18 +153,41 @@ public class Game extends JFrame{
 				if(rand3 > rand2 && option.equals("Higher")){
 					resault.setText("Correct,1 More!");
 				}
+				else if(rand3 == rand2 && option.equals("Higher")){
+					resault.setText("Wrong,You Lose.");
+					higher.setEnabled(false);
+					lower.setEnabled(false);
+					equal.setEnabled(false);
+				}
+				else if(rand3 == rand2 && option.equals("Lower")){
+					resault.setText("Wrong,You Lose.");
+					higher.setEnabled(false);
+					lower.setEnabled(false);
+					equal.setEnabled(false);
+				}
 				else if(rand3 > rand2 && option.equals("Lower")){
 					resault.setText("Wrong,You Lose.");
 					higher.setEnabled(false);
 					lower.setEnabled(false);
+					equal.setEnabled(false);
 				}
 				else if(rand3 < rand2 && option.equals("Higher")){
 					resault.setText("Wrong,You Lose.");
 					higher.setEnabled(false);
 					lower.setEnabled(false);
+					equal.setEnabled(false);
 				}
 				else if(rand3 < rand2 && option.equals("Lower")){
 					resault.setText("Correct,1 More!");
+				}
+				else if(rand3 == rand2 && option.equals("Equal")){
+					resault.setText("Correct,1 More!");
+				}
+				else if(rand3 != rand2 && option.equals("Equal")){
+					resault.setText("Wrong,You Lose.");
+					higher.setEnabled(false);
+					lower.setEnabled(false);
+					equal.setEnabled(false);
 				}
 				round = 3;
 			}
@@ -149,18 +198,41 @@ public class Game extends JFrame{
 				if(rand4 > rand3 && option.equals("Higher")){
 					resault.setText("You Win!");
 				}
+				else if(rand4 == rand3 && option.equals("Higher")){
+					resault.setText("Wrong,You Lose.");
+					higher.setEnabled(false);
+					lower.setEnabled(false);
+					equal.setEnabled(false);
+				}
+				else if(rand4 == rand3 && option.equals("Lower")){
+					resault.setText("Wrong,You Lose.");
+					higher.setEnabled(false);
+					lower.setEnabled(false);
+					equal.setEnabled(false);
+				}
 				else if(rand4 > rand3 && option.equals("Lower")){
 					resault.setText("Wrong,You Lose.");
 					higher.setEnabled(false);
 					lower.setEnabled(false);
+					equal.setEnabled(false);
 				}
 				else if(rand4 < rand3 && option.equals("Higher")){
 					resault.setText("Wrong,You Lose.");
 					higher.setEnabled(false);
 					lower.setEnabled(false);
+					equal.setEnabled(false);
 				}
 				else if(rand4 < rand3 && option.equals("Lower")){
 					resault.setText("You Win!");
+				}
+				else if(rand4 == rand3 && option.equals("Equal")){
+					resault.setText("You Win!");
+				}
+				else if(rand4 != rand3 && option.equals("Equal")){
+					resault.setText("Wrong,You Lose.");
+					higher.setEnabled(false);
+					lower.setEnabled(false);
+					equal.setEnabled(false);
 				}
 			}
 		}
@@ -176,6 +248,7 @@ public class Game extends JFrame{
 			round = 1;
 			higher.setEnabled(true);
 			lower.setEnabled(true);
+			equal.setEnabled(true);
 			firstLabel.setText(""+rand1);
 			seccondLabel.setText("");
 			thirdLabel.setText("");
